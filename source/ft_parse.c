@@ -3,9 +3,9 @@
 void ft_parse(const char *s, va_list param, int *count)
 {
 	int i;
-	int flag;
+	//int flag;
 
-	flag = 0;
+	//flag = 0;
 	i = 0;
 	while(*s)
 	{
@@ -14,12 +14,13 @@ void ft_parse(const char *s, va_list param, int *count)
 			ft_putchar_fd(*s, 1);
 			s++;
 			i++;
+			*count = *count + 1;
 		}
 		else
 		{
-			i += ft_flag_identifier(s, param);
+			*count = *count + ft_type_identifier(s, param);
 			s += 2;
 		}
 	}
-	*count += i;
+	//*count += i;
 }

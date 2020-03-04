@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int ft_sflag(va_list param)
+int ft_stype(va_list param)
 {
 	char *str;
 	str = (char *) va_arg(param, const char * );
@@ -11,27 +11,27 @@ int ft_sflag(va_list param)
 		buffer++ = str++;
 	}*/
 }
-void ft_pflag(va_list param)
+
+void ft_ptype(va_list param)
 {
-	void *ptr;
-	ptr = (void *) va_arg(param, void * );
+	(void) param;
+	//void *ptr;
+	//ptr = (void *) va_arg(param, void * );
 }
 
-int ft_flag_identifier(const char *s, va_list param)
+int ft_type_identifier(const char *s, va_list param)
 {
-	int len_flag;
-	int i;
+	//int len_type;
+	//int i;
 
-	i = 0;
-	len_flag = 0;
+	//i = 0;
+	//len_type = 0;
 	if (s[1] == 's')
-		return (ft_sflag(param));
+		return (ft_stype(param));
 	else if (s[1] == 'p')
-		ft_pflag(param);
+		ft_ptype(param);
 	return 0;
 }
-
-
 
 int ft_printf(const char *s, ...)
 {
