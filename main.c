@@ -15,7 +15,7 @@ int main(int argc, char const *argv[]) {
 	printf("--------------------------------------\n");
 	//printf("retour = 21\t",printf("realprintf : %slol\n", test));
 	//printf("retour = 22\t",ft_printf("mon printf : %slol\n", test));
-	printf("test : %.3d", 15);
+	printf("test : %s", ft_itoa_base(2147483647, 16, "0123456789ABCDEF"));
 
 	return 0;
 }

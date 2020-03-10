@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse.c                                         :+:      :+:    :+:   */
+/*   ft_stype.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smurad <smurad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/04 20:44:19 by smurad            #+#    #+#             */
-/*   Updated: 2020/03/05 00:06:54 by smurad           ###   ########.fr       */
+/*   Created: 2020/03/05 00:05:15 by smurad            #+#    #+#             */
+/*   Updated: 2020/03/05 00:09:18 by smurad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void	ft_parse(const char *s, va_list param, int *count)
+int	ft_stype(va_list param)
 {
-	int i;
+	char	*str;
 
-	i = 0;
-	while (*s)
-	{
-		if (*s != '%')
-		{
-			ft_putchar_fd(*s, 1);
-			s++;
-			i++;
-			*count = *count + 1;
-		}
-		else
-		{
-			*count = *count + ft_type_identifier(s, param);
-			s += 2;
-		}
-	}
+	str = (char *)va_arg(param, const char *);
+	ft_putstr_fd(str, 1);
+	return (ft_strlen(str));
 }
