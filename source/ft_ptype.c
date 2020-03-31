@@ -12,11 +12,20 @@
 
 #include "../ft_printf.h"
 
-char	*ft_stype(va_list param, int *count)
+int ft_ptype(va_list param)
 {
-	char	*str;
+	//(void)param;
+	void *ptr;
+	long test;
+	char *res;
 
-	str = (char *)va_arg(param, const char *);
-	*count = *count + ft_strlen(str);
-	return (str);
+	ptr = (void *) va_arg(param, void * );
+	//printf("printf : %ld\n", (long)ptr);
+	test = (long) ptr;
+	//printf("testptype : %ld", test);
+	res = ft_itoa_base(test, 16, "0123456789abcdef");
+  ft_putstr_fd("0x", 1);
+  ft_putstr_fd(res, 1);
+  return (ft_strlen(res) + 2);
+	//printf("res : 0x%s", res);
 }

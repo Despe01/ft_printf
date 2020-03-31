@@ -11,21 +11,21 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-void	ft_ptype(va_list param)
+char		*ft_type_identifier(char s, va_list param, int *count)
 {
-	(void)param;
-	//void *ptr;
-	//ptr = (void *) va_arg(param, void * );
-}
+	char *res;
 
-int		ft_type_identifier(const char *s, va_list param)
-{
-	if (s[1] == 's')
-		return (ft_stype(param));
-	else if (s[1] == 'p')
+	res = NULL;
+	if (s == 's')
+	{
+		res = ft_stype(param, count);
+		ft_putstr_fd(res, 1);
+	}
+	else if (s == 'p')
 		ft_ptype(param);
-	return (0);
+	return (res);
 }
 
 int		ft_printf(const char *s, ...)

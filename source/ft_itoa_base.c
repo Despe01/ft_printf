@@ -12,9 +12,9 @@
 
 #include "../ft_printf.h"
 
-static int	checklen(int n, int base)
+static long int	checklen(long n, int base)
 {
-	int	len;
+	long int len;
 
 	len = 1;
 	if (n < 0)
@@ -27,9 +27,9 @@ static int	checklen(int n, int base)
 	return (len);
 }
 
-char		*ft_itoa_base(int n, int base, char *digits)
+char		*ft_itoa_base(long n, int base, char *digits)
 {
-	int		i;
+	long	i;
 	char	*res;
 
 	i = checklen(n, base);
