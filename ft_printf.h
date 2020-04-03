@@ -25,22 +25,29 @@ struct FlagStruct
 {
   int flag;
   int zero_width;
-  int star_width;
-  char *width;
-  char *prec;
-  char *type;
+  //int star_width;
+  int width;
+  int prec;
+  int type;
+  char *type_ret;
 };
 
+int ft_prec(const char *s, FlagStruct *flags, int i);
+int ft_width(const char *s, va_list param, FlagStruct *flags);
+void printstruct(struct FlagStruct *flags);
 size_t	ftstrlen(const char *s);
 char	*ft_append_char(char *str, char chr);
 int		ft_printf(const char *s, ...);
 void	ft_parse(const char *s, va_list param, int *count);
-char		*ft_type_identifier(char s, va_list param, int *count);
+char		*ft_type_identifier(char s, va_list param, int *count,
+  FlagStruct *flags);
 int	ft_ptype(va_list param);
-char *ft_stype(va_list param, int *count);
+char *ft_stype(va_list param, FlagStruct *flags);
 char	*ft_itoa_base(long n, int base, char *digits);
 int		ft_flag_identifier(const char *s, va_list param, FlagStruct *flags,
 int *count);
+void ft_join(FlagStruct *flags, int *count);
+char *ft_joinprec(FlagStruct *flags, int *count);
 
 
 

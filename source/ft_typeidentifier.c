@@ -10,17 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "../ft_printf.h"
 
-int		ft_printf(const char *s, ...)
+char		*ft_type_identifier(char s, va_list param, int *count,
+  FlagStruct *flags)
 {
-	int		count;
-	va_list	param;
+	char *res;
 
-	count = 0;
-	va_start(param, s);
-	ft_parse(s, param, &count);
-	va_end(param);
-	return (count);
+	res = NULL;
+  printf("%d\n", *count);
+	if (s == 's')
+	{
+		res = ft_stype(param, flags);
+	}
+	else if (s == 'p')
+		ft_ptype(param);
+	return (res);
 }

@@ -12,11 +12,14 @@
 
 #include "../ft_printf.h"
 
-char	*ft_stype(va_list param, int *count)
+char	*ft_stype(va_list param, FlagStruct *flags)
 {
 	char	*str;
+	//int *test = count;
 
+	//printf("%d\n", *test);
 	str = (char *)va_arg(param, const char *);
-	*count = *count + ft_strlen(str);
+	//*count = *count + ftstrlen(str);
+	flags->type = 0;
 	return (str);
 }

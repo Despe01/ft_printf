@@ -21,8 +21,8 @@ int main(int argc, char const *argv[]) {
 	(void) argc;
 	(void) argv;
 	printf("--------------------------------------\n");
-	int return_printf = printf("realprintf : %-*slol\n", 15, test);
-	int return_ft = ft_printf("mon printf : %-*slol\n", 15, test);
+	int return_printf = printf("realprintf : %-.3slol\n", test);
+	int return_ft = ft_printf("mon printf : %-.3slol\n", test);
 	printf("retour printf : %d\n", return_printf);
 	printf("retour ft_printf : %d\n", return_ft);
 
@@ -32,7 +32,7 @@ int main(int argc, char const *argv[]) {
 	//printf("test printf : %p\n", &test);
 	//ft_printf("test ft_printf : %p\n", &test);
 	printf("%zu\n", ftstrlen(test2));
-	printf("\ntest: :%*d:FIN TEST\n", 015, testi);
+	printf("\ntest: :%.05d:FIN TEST\n", testi);
 
 	return 0;
 }
