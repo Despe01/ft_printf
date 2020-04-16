@@ -59,8 +59,7 @@ int ft_prec(const char *s, FlagStruct *flags, int i)
   return (j);
 }
 
-int		ft_flag_identifier(const char *s, va_list param, FlagStruct *flags,
-int *count)
+int		ft_flag_identifier(const char *s, va_list param, FlagStruct *flags)
 {
 	int i;
 
@@ -83,16 +82,14 @@ int *count)
 	{
 		i += ft_prec(s, flags, i);
 	}
-	if ((flags->type_ret = ft_type_identifier(s[i], param, count, flags)) == NULL)
+	if ((flags->type_ret = ft_type_identifier(s[i], param, flags)) != NULL)
+	{
+		//printstruct(flags);
+		return (i);
+	}
+	else
 	{
 		ft_putstr_fd("ERROR RETURN HERE!!!\n", 1);
 		return (-1);
 	}
-	//printstruct(flags);
-	else
-	{
-		printstruct(flags);
-		return (i);
-	}
-	//printf("flags width : %s ", flags->width);
 }

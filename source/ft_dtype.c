@@ -12,20 +12,13 @@
 
 #include "../ft_printf.h"
 
-char *ft_ptype(va_list param, FlagStruct *flags)
+char	*ft_dtype(va_list param, FlagStruct *flags)
 {
-	//(void)param;
-	long ptr;
-	//long test;
-	char *res;
+	int i;
+  char *res;
 
-	ptr = (long ) va_arg(param, long  );
-	//printf("printf : %ld\n", (long)ptr);
-	//test = (long) ptr;
-	//printf("testptype : %ld", test);
-	res = ft_itoa_base(ptr, 16, "0123456789abcdef");
-	res = ft_strjoin("0x", res);
-	flags->type = 0;
-  return (res);
-	//printf("res : 0x%s", res);
+	i = (int)va_arg(param, int);
+  flags->type = 1;
+  res = ft_itoa_base(i, 10, "0123456789");
+	return res;
 }

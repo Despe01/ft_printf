@@ -20,6 +20,7 @@ static void flag_init(struct FlagStruct *flags)
 	flags->prec = -1;
 	flags->type = -1;
 	flags->type_ret = NULL;
+	flags->zero_width_disable = 0;
 }
 
 void printstruct(struct FlagStruct *flags)
@@ -31,16 +32,19 @@ void printstruct(struct FlagStruct *flags)
 	printf("flags->prec : %d\n", flags->prec);
 	printf("flags->type : %d\n", flags->type);
 	printf("flags->type_ret : %s\n", flags->type_ret);
+	printf("flags->zero_width_disable : %d\n", flags->zero_width_disable);
 	printf("--------------------------------------\n");
 }
 
 void	ft_parse(const char *s, va_list param, int *count)
 {
 	FlagStruct flags;
+	int i;
 
+	i = 0;
 	while (*s)
 	{
-		flag_init(&flags);
+
 		if (*s != '%')
 		{
 			ft_putchar_fd(*s, 1);
@@ -49,12 +53,24 @@ void	ft_parse(const char *s, va_list param, int *count)
 		}
 		else
 		{
+			flag_init(&flags);
 			s++;
-			s += ft_flag_identifier(s, param, &flags, count);
+			i = ft_flag_identifier(s, param, &flags);
+			if (i != (-1))
+			{
+			s += i + 1;
 			//ft_type_identifier(s, param, count);
 			ft_join(&flags, count);
-			s++;
+			//s++;
+			}
+			else
+				{
+					while(*s)
+					{
+						s++;
+					}
+				}
 		}
 	}
-	printstruct(&flags);
+	//printstruct(&flags);
 }
