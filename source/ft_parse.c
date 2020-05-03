@@ -12,6 +12,19 @@
 
 #include "../ft_printf.h"
 
+size_t	ftstrlen(const char *s)
+{
+	size_t i;
+
+	i = 0;
+	if (s != NULL)
+	{
+	while (s[i])
+		i++;
+	}
+	return (i);
+}
+
 static void flag_init(struct FlagStruct *flags)
 {
 	flags->flag = 0;
@@ -55,7 +68,7 @@ void	ft_parse(const char *s, va_list param, int *count)
 		{
 			flag_init(&flags);
 			s++;
-			i = ft_flag_identifier(s, param, &flags);
+			i = ft_flag_identifier(s, param, &flags, count);
 			if (i != (-1))
 			{
 			s += i + 1;

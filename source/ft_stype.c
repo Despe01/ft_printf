@@ -18,8 +18,13 @@ char	*ft_stype(va_list param, FlagStruct *flags)
 	//int *test = count;
 
 	//printf("%d\n", *test);
-	str = (char *)va_arg(param, const char *);
-	//*count = *count + ftstrlen(str);
 	flags->type = 0;
+	if (flags->prec == -2)
+		return (ft_strdup(""));
+	str = (char *)va_arg(param, const char *);
+	if (str == NULL)
+		return ("(null)");
+	//*count = *count + ftstrlen(str);
+
 	return (str);
 }

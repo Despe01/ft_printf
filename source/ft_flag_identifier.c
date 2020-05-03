@@ -32,6 +32,11 @@ int ft_width(const char *s, va_list param, FlagStruct *flags)
   if (s[i] == '*')
 	{
 		flags->width = ft_star_width(param);
+		if (flags->width < 0)
+		{
+			flags->width = flags->width * -1;
+			flags->flag = 1;
+		}
 		return (1);
 	}
   while(s[i + j] >= '0' && s[i + j] <= '9')
@@ -43,13 +48,33 @@ int ft_width(const char *s, va_list param, FlagStruct *flags)
   return (j);
 }
 
-int ft_prec(const char *s, FlagStruct *flags, int i)
+static int	ft_star_prec(va_list param)
+{
+	int i;
+
+	i = (int)va_arg(param, int);
+	return i;
+}
+
+int ft_prec(const char *s, va_list param, FlagStruct *flags, int i)
 {
   int j;
   char *res;
 
   j = 1;
   res = NULL;
+	if (s[i + 1] == '*')
+	{
+		flags->prec = ft_star_prec(param);
+		return (2);
+	}
+	else if (s[i + 1] == 'c' || s[i + 1] == 's' ||s[i + 1] == 'p' ||
+	s[i + 1] == 'd' || s[i + 1] == 'i' || s[i + 1] == 'u' || s[i + 1] == 'x' ||
+	s[i + 1] == 'X' || s[i + 1] == '%')
+	{
+		flags->prec = -2;
+		return (1);
+	}
   while(s[i + j] >= '0' && s[i + j] <= '9')
   {
     res = ft_append_char(res, s[i + j]);
@@ -59,7 +84,7 @@ int ft_prec(const char *s, FlagStruct *flags, int i)
   return (j);
 }
 
-int		ft_flag_identifier(const char *s, va_list param, FlagStruct *flags)
+int		ft_flag_identifier(const char *s, va_list param, FlagStruct *flags, int *count)
 {
 	int i;
 
@@ -80,9 +105,9 @@ int		ft_flag_identifier(const char *s, va_list param, FlagStruct *flags)
 	}
 	if (s[i] == '.')
 	{
-		i += ft_prec(s, flags, i);
+		i += ft_prec(s, param, flags, i);
 	}
-	if ((flags->type_ret = ft_type_identifier(s[i], param, flags)) != NULL)
+	if ((flags->type_ret = ft_type_identifier(s[i], param, flags, count)) != NULL)
 	{
 		//printstruct(flags);
 		return (i);

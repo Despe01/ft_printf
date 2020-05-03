@@ -1,32 +1,23 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-size_t	ftstrlen(const char *s)
-{
-	size_t i;
-
-	i = 0;
-	if (s != NULL)
-	{
-	while (s[i])
-		i++;
-	}
-	return (i);
-}
 
 int main(int argc, char const *argv[]) {
-	char *test = "retour";
+	//void *testp = NULL;
+	//char *test = "retour";
 	//char *test2 = NULL;
-	int testi = -10;
+	//char *test3 = ft_strdup(" ");
+	//test3[0] = 0;
+	//int testi = 0;
 	//char testc = 'a';
 	(void) argc;
 	(void) argv;
 	printf("--------------------------------------\n");
-	int return_printf = printf("realprintf : %Xlol\n", testi);
-	int return_ft = ft_printf("mon printf : %Xlol\n", testi);
+	int return_printf = printf("15chiffre 1 %.s\n", "retour");
+	//int return_ft = ft_printf("15chiffre 1 %*d\n", 10, 42);
 	printf("--------------------------------------\n");
 	printf("retour printf : %d\n", return_printf);
-	printf("retour ft_printf : %d\n", return_ft);
+	//printf("retour ft_printf : %d\n", return_ft);
 
 	printf("--------------------------------------\n");
 	//printf("retour = 21\t",printf("realprintf : %slol\n", test));
@@ -34,8 +25,6 @@ int main(int argc, char const *argv[]) {
 	//printf("test printf : %p\n", &test);
 	//ft_printf("test ft_printf : %p\n", &test);
 	//printf("%zu\n", ftstrlen(test2));
-	printf("\ntest: :%20p:FIN TEST\n", test);
+	//printf("\ntest: :%20p:FIN TEST\n", test);
 	//printf("%zu\n", ftstrlen(test));
-
-	return 0;
 }

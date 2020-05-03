@@ -12,7 +12,7 @@ char *ft_xtype(va_list param, FlagStruct *flags)
 	//test = (long) ptr;
 	//printf("testptype : %ld", test);
 	res = ft_itoa_base(i, 16, "0123456789abcdef");
-	flags->type = 0;
+	flags->type = 1;
   return (res);
 	//printf("res : 0x%s", res);
 }
