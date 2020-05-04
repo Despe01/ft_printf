@@ -13,13 +13,16 @@ int main(int argc, char const *argv[]) {
 	(void) argc;
 	(void) argv;
 	printf("--------------------------------------\n");
-	int return_printf = printf("15chiffre 1 %.s\n", "retour");
-	//int return_ft = ft_printf("15chiffre 1 %*d\n", 10, 42);
+	int return_printf = printf(":%017.*uRSMjj", -10, 2147483647);
+	int return_ft = ft_printf(":%017.*uRSMjj", -10, 2147483647);
 	printf("--------------------------------------\n");
 	printf("retour printf : %d\n", return_printf);
-	//printf("retour ft_printf : %d\n", return_ft);
-
+	printf("retour ft_printf : %d\n", return_ft);
 	printf("--------------------------------------\n");
+	/*while(1)
+	{
+		ft_printf("15chiffre 1 %*s\n", 10, "fdskjf dnkjndkjs nkdsjnkjdsn ncdnk ncskdnckdsnkjdn");
+	}*/
 	//printf("retour = 21\t",printf("realprintf : %slol\n", test));
 	//printf("retour = 22\t",ft_printf("mon printf : %slol\n", test));
 	//printf("test printf : %p\n", &test);

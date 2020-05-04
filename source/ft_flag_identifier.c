@@ -36,6 +36,8 @@ int ft_width(const char *s, va_list param, FlagStruct *flags)
 		{
 			flags->width = flags->width * -1;
 			flags->flag = 1;
+			//if (flags->zero_width == 0)
+				flags->zero_width_disable = 1; // A CHECK !
 		}
 		return (1);
 	}
@@ -72,7 +74,7 @@ int ft_prec(const char *s, va_list param, FlagStruct *flags, int i)
 	s[i + 1] == 'd' || s[i + 1] == 'i' || s[i + 1] == 'u' || s[i + 1] == 'x' ||
 	s[i + 1] == 'X' || s[i + 1] == '%')
 	{
-		flags->prec = -2;
+		flags->prec_dot = 1;
 		return (1);
 	}
   while(s[i + j] >= '0' && s[i + j] <= '9')
@@ -84,7 +86,7 @@ int ft_prec(const char *s, va_list param, FlagStruct *flags, int i)
   return (j);
 }
 
-int		ft_flag_identifier(const char *s, va_list param, FlagStruct *flags, int *count)
+int		ft_flag_identifier(const char *s, va_list param, FlagStruct *flags)
 {
 	int i;
 
@@ -107,7 +109,7 @@ int		ft_flag_identifier(const char *s, va_list param, FlagStruct *flags, int *co
 	{
 		i += ft_prec(s, param, flags, i);
 	}
-	if ((flags->type_ret = ft_type_identifier(s[i], param, flags, count)) != NULL)
+	if ((flags->type_ret = ft_type_identifier(s[i], param, flags)) != NULL)
 	{
 		//printstruct(flags);
 		return (i);

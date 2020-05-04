@@ -33,7 +33,10 @@ static void flag_init(struct FlagStruct *flags)
 	flags->prec = -1;
 	flags->type = -1;
 	flags->type_ret = NULL;
+	flags->czero = 0;
+	flags->prec_dot = 0;
 	flags->zero_width_disable = 0;
+	// peut etre if type_ret != NULL free() pck malloc que char*
 }
 
 void printstruct(struct FlagStruct *flags)
@@ -45,7 +48,7 @@ void printstruct(struct FlagStruct *flags)
 	printf("flags->prec : %d\n", flags->prec);
 	printf("flags->type : %d\n", flags->type);
 	printf("flags->type_ret : %s\n", flags->type_ret);
-	printf("flags->zero_width_disable : %d\n", flags->zero_width_disable);
+	printf("flags->czero : %d\n", flags->czero);
 	printf("--------------------------------------\n");
 }
 
@@ -68,7 +71,7 @@ void	ft_parse(const char *s, va_list param, int *count)
 		{
 			flag_init(&flags);
 			s++;
-			i = ft_flag_identifier(s, param, &flags, count);
+			i = ft_flag_identifier(s, param, &flags);
 			if (i != (-1))
 			{
 			s += i + 1;

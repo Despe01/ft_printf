@@ -3,10 +3,11 @@
 char *ft_uppercase_xtype(va_list param, FlagStruct *flags)
 {
 	unsigned int i;
-	char *res;
 
 	i = (unsigned int) va_arg(param, unsigned int);
-	res = ft_itoa_base(i, 16, "0123456789ABCDEF");
 	flags->type = 1;
-  return (res);
+	if (i == 0 && flags->prec_dot == 1)
+		return (ft_strdup(""));
+	else
+		return (ft_itoa_base(i, 16, "0123456789ABCDEF"));
 }

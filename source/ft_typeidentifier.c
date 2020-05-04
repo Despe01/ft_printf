@@ -13,7 +13,7 @@
 #include "../ft_printf.h"
 
 char		*ft_type_identifier(char s, va_list param,
-  FlagStruct *flags, int *count)
+  FlagStruct *flags)
 {
 	char *res;
 
@@ -27,7 +27,7 @@ char		*ft_type_identifier(char s, va_list param,
   else if (s == 'd')
     res = ft_dtype(param, flags);
   else if (s == 'c')
-    res = ft_ctype(param, flags, count);
+    res = ft_ctype(param, flags);
   else if (s == 'i')
     res = ft_dtype(param, flags);
   else if (s == 'u')

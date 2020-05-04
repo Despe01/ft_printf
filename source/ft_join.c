@@ -15,9 +15,11 @@
 static char *zero_init(FlagStruct *flags)
 {
   char *res;
+  char *tmp;
   int i;
 
   i = 0;
+  tmp = NULL;
   if (!(res = (char *)malloc(sizeof(char) * (flags->prec + 1))))
     return (NULL);
   while (i < flags->prec)
@@ -28,8 +30,10 @@ static char *zero_init(FlagStruct *flags)
   res[i] = '\0';
   if (flags->type_ret[0] == '-')
   {
-    res = ft_strjoin(res, flags->type_ret + 1);
-    res = ft_strjoin("-", res);
+    tmp = ft_strjoin(res, flags->type_ret + 1);
+    free(res);
+    res = ft_strjoin("-", tmp);
+    free(tmp);
   }
   else
     res = ft_strjoin(res, flags->type_ret);
@@ -62,7 +66,7 @@ char *ft_joinprec(FlagStruct *flags)
   char *res;
 
   res = ft_strdup("");
-  if (flags->prec != -1 && flags->type == 1)
+  if (flags->prec >= 0 && flags->type == 1)
   {
     flags->zero_width_disable = 1;
   }
@@ -120,7 +124,7 @@ char *ft_joinwidth(FlagStruct *flags, char *s)
   /*if (flags->type == 1)
     len = ftpreclen(s);
   else*/
-    len = ftstrlen(s);
+    len = ftstrlen(s) + flags->czero;
   if(flags->width > len)
   {
     len = flags->width - len;
@@ -145,8 +149,15 @@ void ft_join(FlagStruct *flags, int *count)
   if (flags->flag == 1)
   {
     res = ft_strjoin(prec, width);
-    *count = *count + (int)ftstrlen(res);
+    *count = *count + (int)ftstrlen(res) + flags->czero;
     //res = ft_joinprec(flags);
+    if (flags->czero == 1)
+    {
+      ft_putchar_fd(0, 1);
+      ft_putstr_fd(width, 1);
+    }
+    else
+      ft_putstr_fd(res, 1);
   }
   else
   {
@@ -157,7 +168,13 @@ void ft_join(FlagStruct *flags, int *count)
     }
     else
       res = ft_strjoin(width, prec);
-    *count = *count + (int)ftstrlen(res);
+    *count = *count + (int)ftstrlen(res) + flags->czero;
+    if (flags->czero == 1)
+    {
+      ft_putstr_fd(width, 1);
+      ft_putchar_fd(0, 1);
+    }
+    else
+      ft_putstr_fd(res, 1);
   }
-  ft_putstr_fd(res, 1);
 }

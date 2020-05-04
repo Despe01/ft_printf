@@ -19,11 +19,12 @@ char	*ft_stype(va_list param, FlagStruct *flags)
 
 	//printf("%d\n", *test);
 	flags->type = 0;
-	if (flags->prec == -2)
+	if (flags->prec_dot == 1)
 		return (ft_strdup(""));
 	str = (char *)va_arg(param, const char *);
 	if (str == NULL)
 		return ("(null)");
+	//free(str);
 	//*count = *count + ftstrlen(str);
 
 	return (str);
