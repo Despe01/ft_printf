@@ -32,10 +32,10 @@ static void flag_init(struct FlagStruct *flags)
 	flags->width = -1;
 	flags->prec = -1;
 	flags->type = -1;
-	flags->type_ret = NULL;
 	flags->czero = 0;
 	flags->prec_dot = 0;
 	flags->zero_width_disable = 0;
+	flags->type_ret = NULL;
 	// peut etre if type_ret != NULL free() pck malloc que char*
 }
 
@@ -58,6 +58,8 @@ void	ft_parse(const char *s, va_list param, int *count)
 	int i;
 
 	i = 0;
+	//printstruct(&flags);
+	flag_init(&flags);
 	while (*s)
 	{
 
@@ -69,7 +71,6 @@ void	ft_parse(const char *s, va_list param, int *count)
 		}
 		else
 		{
-			flag_init(&flags);
 			s++;
 			i = ft_flag_identifier(s, param, &flags);
 			if (i != (-1))
@@ -77,6 +78,8 @@ void	ft_parse(const char *s, va_list param, int *count)
 			s += i + 1;
 			//ft_type_identifier(s, param, count);
 			ft_join(&flags, count);
+			free(flags.type_ret);
+			flag_init(&flags);
 			//s++;
 			}
 			else
@@ -86,6 +89,8 @@ void	ft_parse(const char *s, va_list param, int *count)
 						s++;
 					}
 				}
+			//free(flags.type_ret);
+			//flag_init(&flags);
 		}
 	}
 	//printstruct(&flags);

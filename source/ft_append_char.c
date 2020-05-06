@@ -11,11 +11,11 @@ char	*ft_append_char(char *str, char chr)
 		return (NULL);
   if (str != NULL)
   {
-	while (str[i])
-	{
-		ret[i] = str[i];
-		i++;
-	}
+		while (str[i])
+		{
+			ret[i] = str[i];
+			i++;
+		}
   }
 	ret[i] = chr;
 	ret[i + 1] = '\0';

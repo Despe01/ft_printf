@@ -20,13 +20,13 @@ int	ft_star_width(va_list param)
 	return i;
 }
 
-int ft_width(const char *s, va_list param, FlagStruct *flags)
+int ft_width(const char *s, va_list param, FlagStruct *flags, int i)
 {
-  int i;
+  //int i;
   int j;
   char *res;
 
-  i = flags->flag + flags->zero_width;
+  //i = flags->flag + flags->zero_width;
   j = 0;
   res = NULL;
   if (s[i] == '*')
@@ -47,6 +47,7 @@ int ft_width(const char *s, va_list param, FlagStruct *flags)
     j++;
   }
   flags->width = ft_atoi(res);
+	free(res);
   return (j);
 }
 
@@ -83,6 +84,7 @@ int ft_prec(const char *s, va_list param, FlagStruct *flags, int i)
     j++;
   }
   flags->prec = ft_atoi(res);
+	free(res);
   return (j);
 }
 
@@ -91,19 +93,19 @@ int		ft_flag_identifier(const char *s, va_list param, FlagStruct *flags)
 	int i;
 
 	i = 0;
+	while (s[i] == '-' || s[i] == '0')
+  {
 	if (s[i] == '-')
-	{
 		flags->flag = 1;
-		i++;
-	}
 	if (s[i] == '0' && flags->flag == 0)
-	{
 		flags->zero_width = 1;
-		i++;
+	if (flags->flag == 1 && flags->zero_width == 1)
+			flags->zero_width = 0;
+	i++;
 	}
 	if (s[i] == '*' || (s[i] >= '0' && s[i] <= '9'))
 	{
-		i += ft_width(s, param, flags);
+		i += ft_width(s, param, flags, i);
 	}
 	if (s[i] == '.')
 	{

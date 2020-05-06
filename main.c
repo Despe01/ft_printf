@@ -12,17 +12,20 @@ int main(int argc, char const *argv[]) {
 	//char testc = 'a';
 	(void) argc;
 	(void) argv;
-	printf("--------------------------------------\n");
-	int return_printf = printf(":%017.*uRSMjj", -10, 2147483647);
-	int return_ft = ft_printf(":%017.*uRSMjj", -10, 2147483647);
+	/*printf("--------------------------------------\n");
+	int return_printf = printf(":%017.*u%d%sRSMjj%.2s%%\n", -10, 2147483647, 42, "lol", test);
+	int return_ft = ft_printf(":%017.*u%d%sRSMjj%.2s%%\n", -10, 2147483647, 42, "lol", test);
 	printf("--------------------------------------\n");
 	printf("retour printf : %d\n", return_printf);
 	printf("retour ft_printf : %d\n", return_ft);
-	printf("--------------------------------------\n");
-	/*while(1)
-	{
-		ft_printf("15chiffre 1 %*s\n", 10, "fdskjf dnkjndkjs nkdsjnkjdsn ncdnk ncskdnckdsnkjdn");
-	}*/
+	printf("--------------------------------------\n");*/
+ft_printf("hello ca%----4c %1c%10c%-c ??\n", '\0', '\n', (char)56, 0);
+printf("hello ca%----4c %1c%10c%-c ??\n", '\0', '\n', (char)56, 0);
+//ft_printf(NULL, 0);
+		//ft_printf(":%017.*u%d%sRSMjj%.2s%%\n", -10, 2147483647, 42, "lol", "lel");
+		//printf("%0-10.5d\n", 42);
+	//ft_printf("%d\n", 10);
+	//getchar();
 	//printf("retour = 21\t",printf("realprintf : %slol\n", test));
 	//printf("retour = 22\t",ft_printf("mon printf : %slol\n", test));
 	//printf("test printf : %p\n", &test);

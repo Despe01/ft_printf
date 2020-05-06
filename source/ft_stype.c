@@ -21,11 +21,13 @@ char	*ft_stype(va_list param, FlagStruct *flags)
 	flags->type = 0;
 	if (flags->prec_dot == 1)
 		return (ft_strdup(""));
-	str = (char *)va_arg(param, const char *);
+	str = va_arg(param, char *);
 	if (str == NULL)
-		return ("(null)");
+		return (ft_strdup("(null)"));
+	else
+		return (ft_strdup(str));
 	//free(str);
 	//*count = *count + ftstrlen(str);
 
-	return (str);
+	//return (str);
 }

@@ -36,7 +36,12 @@ static char *zero_init(FlagStruct *flags)
     free(tmp);
   }
   else
-    res = ft_strjoin(res, flags->type_ret);
+  {
+    tmp = ft_strjoin(res, flags->type_ret);
+    free(res);
+    res = ft_strdup(tmp);
+    free(tmp);
+  }
   return (res);
 }
 
@@ -64,6 +69,7 @@ static size_t	ftpreclen(const char *s)
 char *ft_joinprec(FlagStruct *flags)
 {
   char *res;
+  int i = 0;
 
   res = ft_strdup("");
   if (flags->prec >= 0 && flags->type == 1)
@@ -72,17 +78,18 @@ char *ft_joinprec(FlagStruct *flags)
   }
   if (flags->type == 0 && flags->prec >= 0)
   {
-    while((flags->prec > 0) && *flags->type_ret)
+    while((flags->prec-- > 0) && flags->type_ret[i])
     {
-      res = ft_append_char(res, *flags->type_ret);
-      flags->type_ret++;
-      flags->prec--;
+      res = ft_append_char(res, flags->type_ret[i++]);
+      //flags->type_ret++;
+      //flags->prec--;
     }
   }
   else if (flags->type == 1 && flags->prec > 0 &&
     (flags->prec > (int)ftpreclen(flags->type_ret)))
   {
     flags->prec = flags->prec - ftpreclen(flags->type_ret);
+    free(res);
     res = zero_init(flags);
     //flags->zero_width_disable = 1;
     /*if (flags->prec > (int)ftstrlen(flags->type_ret))
@@ -97,7 +104,10 @@ char *ft_joinprec(FlagStruct *flags)
   && flags->prec == 0))
     return res;
   else
-    return (flags->type_ret);
+  {
+    free(res);
+    return (ft_strdup(flags->type_ret));
+  }
   return res;
 }
 
@@ -143,9 +153,12 @@ void ft_join(FlagStruct *flags, int *count)
   char *prec;
   char *width;
   char *res;
+  char *tmp;
 
   prec = ft_joinprec(flags);
   width = ft_joinwidth(flags, prec);
+  res = NULL;
+  tmp = NULL;
   if (flags->flag == 1)
   {
     res = ft_strjoin(prec, width);
@@ -163,8 +176,9 @@ void ft_join(FlagStruct *flags, int *count)
   {
     if (width[0] == '0' && flags->type_ret[0] == '-')
     {
-      res = ft_strjoin(width, prec + 1);
-      res = ft_strjoin("-", res);
+      tmp = ft_strjoin(width, prec + 1);
+      res = ft_strjoin("-", tmp);
+      //free(tmp);
     }
     else
       res = ft_strjoin(width, prec);
@@ -177,4 +191,8 @@ void ft_join(FlagStruct *flags, int *count)
     else
       ft_putstr_fd(res, 1);
   }
+  free(prec);
+  free(width);
+  free(res);
+  free(tmp);
 }

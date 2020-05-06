@@ -39,7 +39,7 @@ size_t	ftstrlen(const char *s);
 char	*ft_dtype(va_list param, FlagStruct *flags);
 int ft_prec(const char *s, va_list param, FlagStruct *flags, int i);
 char	*ft_ctype(va_list param, FlagStruct *flags);
-int ft_width(const char *s, va_list param, FlagStruct *flags);
+int ft_width(const char *s, va_list param, FlagStruct *flags, int i);
 void printstruct(struct FlagStruct *flags);
 size_t	ftstrlen(const char *s);
 char	*ft_append_char(char *str, char chr);
