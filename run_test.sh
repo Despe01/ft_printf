@@ -1,6 +1,6 @@
 #!/bin/bash
 
 # ---------------------------------------------
-gcc -Wall -Wextra -Werror -fsanitize=address -o test.out main.c ft_printf.c source/*.c libft/libft.a
+gcc -Wall -Wextra -Werror -fsanitize=address -o test.out main.c libftprintf.a
 ./test.out
 # ---------------------------------------------

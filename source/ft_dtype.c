@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stype.c                                         :+:      :+:    :+:   */
+/*   ft_dtype.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smurad <smurad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,12 +12,12 @@
 
 #include "../ft_printf.h"
 
-char	*ft_dtype(va_list param, FlagStruct *flags)
+char	*ft_dtype(va_list param, t_flags *flags)
 {
 	int i;
 
 	i = (int)va_arg(param, int);
-  flags->type = 1;
+	flags->type = 1;
 	if (i == 0 && flags->prec_dot == 1)
 		return (ft_strdup(""));
 	else

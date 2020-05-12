@@ -12,22 +12,16 @@
 
 #include "../ft_printf.h"
 
-char	*ft_stype(va_list param, FlagStruct *flags)
+char	*ft_stype(va_list param, t_flags *flags)
 {
 	char	*str;
-	//int *test = count;
 
-	//printf("%d\n", *test);
 	flags->type = 0;
+	str = va_arg(param, char *);
 	if (flags->prec_dot == 1)
 		return (ft_strdup(""));
-	str = va_arg(param, char *);
 	if (str == NULL)
 		return (ft_strdup("(null)"));
 	else
 		return (ft_strdup(str));
-	//free(str);
-	//*count = *count + ftstrlen(str);
-
-	//return (str);
 }

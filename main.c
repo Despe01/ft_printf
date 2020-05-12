@@ -19,8 +19,8 @@ int main(int argc, char const *argv[]) {
 	printf("retour printf : %d\n", return_printf);
 	printf("retour ft_printf : %d\n", return_ft);
 	printf("--------------------------------------\n");*/
-ft_printf("hello ca%----4c %1c%10c%-c ??\n", '\0', '\n', (char)56, 0);
-printf("hello ca%----4c %1c%10c%-c ??\n", '\0', '\n', (char)56, 0);
+ft_printf("u%4.2ss %-1.s:\n %---5.3s:\n%.10d\n", "coco", NULL, "yooo", 22);
+printf("u%4.2ss %-1.s:\n %---5.3s:\n%.10d\n", "coco", NULL, "yooo", 22);
 //ft_printf(NULL, 0);
 		//ft_printf(":%017.*u%d%sRSMjj%.2s%%\n", -10, 2147483647, 42, "lol", "lel");
 		//printf("%0-10.5d\n", 42);

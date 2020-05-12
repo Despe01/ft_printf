@@ -12,20 +12,20 @@
 
 #include "../ft_printf.h"
 
-size_t	ftstrlen(const char *s)
+size_t		ftstrlen(const char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (s != NULL)
 	{
-	while (s[i])
-		i++;
+		while (s[i])
+			i++;
 	}
 	return (i);
 }
 
-static void flag_init(struct FlagStruct *flags)
+static void	flag_init(t_flags *flags)
 {
 	flags->flag = 0;
 	flags->zero_width = 0;
@@ -36,33 +36,16 @@ static void flag_init(struct FlagStruct *flags)
 	flags->prec_dot = 0;
 	flags->zero_width_disable = 0;
 	flags->type_ret = NULL;
-	// peut etre if type_ret != NULL free() pck malloc que char*
 }
 
-void printstruct(struct FlagStruct *flags)
+void		ft_parse(const char *s, va_list param, int *count)
 {
-	printf("\n--------------------------------------\n");
-	printf("flags->flag : %d\n", flags->flag);
-	printf("flags->zero_width : %d\n", flags->zero_width);
-	printf("flags->width : %d\n", flags->width);
-	printf("flags->prec : %d\n", flags->prec);
-	printf("flags->type : %d\n", flags->type);
-	printf("flags->type_ret : %s\n", flags->type_ret);
-	printf("flags->czero : %d\n", flags->czero);
-	printf("--------------------------------------\n");
-}
-
-void	ft_parse(const char *s, va_list param, int *count)
-{
-	FlagStruct flags;
-	int i;
+	t_flags		flags;
+	int			i;
 
 	i = 0;
-	//printstruct(&flags);
 	flag_init(&flags);
 	while (*s)
-	{
-
 		if (*s != '%')
 		{
 			ft_putchar_fd(*s, 1);
@@ -71,27 +54,15 @@ void	ft_parse(const char *s, va_list param, int *count)
 		}
 		else
 		{
-			s++;
-			i = ft_flag_identifier(s, param, &flags);
+			i = ft_flag_identifier(s + 1, param, &flags);
 			if (i != (-1))
 			{
-			s += i + 1;
-			//ft_type_identifier(s, param, count);
-			ft_join(&flags, count);
-			free(flags.type_ret);
-			flag_init(&flags);
-			//s++;
+				s += i + 2;
+				ft_join(&flags, count);
+				flag_init(&flags);
 			}
 			else
-				{
-					while(*s)
-					{
-						s++;
-					}
-				}
-			//free(flags.type_ret);
-			//flag_init(&flags);
+				while (*s)
+					s++;
 		}
-	}
-	//printstruct(&flags);
 }
