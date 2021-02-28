@@ -6,7 +6,7 @@
 /*   By: smurad <smurad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:44:23 by smurad            #+#    #+#             */
-/*   Updated: 2020/03/04 21:34:10 by smurad           ###   ########.fr       */
+/*   Updated: 2021/02/28 04:38:19 by smurad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static long int	checklen(long n, int base)
 	return (len);
 }
 
-char		*ft_itoa_base(long n, int base, char *digits)
+char			*ft_itoa_base(long n, int base, char *digits)
 {
 	long	i;
 	char	*res;

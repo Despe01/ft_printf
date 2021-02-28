@@ -1,4 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_joinprec.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: smurad <smurad@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/28 04:37:20 by smurad            #+#    #+#             */
+/*   Updated: 2021/02/28 04:39:43 by smurad           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../ft_printf.h"
+
+static char		*ft_strdup_free(const char *s1, char *tofree)
+{
+	int		i;
+	char	*res;
+
+	i = 0;
+	res = NULL;
+	free(tofree);
+	res = malloc(sizeof(char) * ft_strlen(s1) + 1);
+	if (res == NULL)
+		return (res);
+	while (s1[i])
+	{
+		res[i] = s1[i];
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
+}
 
 static char		*zero_init(t_flags *flags)
 {
@@ -73,9 +105,6 @@ char			*ft_joinprec(t_flags *flags)
 	&& flags->type == 1 && flags->prec == 0))
 		return (res);
 	else
-	{
-		free(res);
-		return (ft_strdup(flags->type_ret));
-	}
+		return (ft_strdup_free(flags->type_ret, res));
 	return (res);
 }
