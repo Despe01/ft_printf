@@ -6,7 +6,7 @@
 /*   By: smurad <smurad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 20:44:09 by smurad            #+#    #+#             */
-/*   Updated: 2021/02/28 21:49:43 by smurad           ###   ########.fr       */
+/*   Updated: 2021/03/01 05:20:51 by smurad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include "libft/libft.h"
-# include <stdio.h>
 
 typedef struct	s_flags
 {
